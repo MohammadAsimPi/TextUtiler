@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
 import React, { useState } from "react";
 import Alert from "./Components/Alert";
-// import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -40,12 +40,9 @@ function App() {
         <Alert alert={alert}/>
         <div className="container my-3">
           {/* <Routes> */}
-            {/* <Route exact path="/about"> */}
-            {/* <About/> */}
-            {/* </Route> */}
-            {/* <Route exact path="/" > */}
+            {/* <Route path="/about" element={ <About/> }></Route> */}
+            {/* <Route path="/" element={}></Route> */}
             <TextForm showAlert={showAlert} heading="Enter Your Text To Analyze" mode={mode}/>
-            {/* </Route> */}
           {/* </Routes> */}
         </div>
       {/* </Router> */}

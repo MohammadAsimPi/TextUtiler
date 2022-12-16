@@ -40,9 +40,9 @@ export default function TextForm(props) {
         props.showAlert("Speaking!", "success");
       }
 
-    const HandleOnChange =() => {
+    const HandleOnChange =(event) => {
         // console.log("handle On Changed");
-        setText('event'.target.value);
+        setText(event.target.value);
     }
 
 

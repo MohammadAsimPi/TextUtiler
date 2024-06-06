@@ -21,9 +21,7 @@ export default function TextForm(props) {
     }
 
     const handleCopy = ()=> {
-        var Text = document.getElementById("myBox");
-        Text.select();
-        navigator.clipboard.writeText(Text.value);
+        navigator.clipboard.writeText(Text);
         props.showAlert("Copied To Clipboard!", "success");
     }
 
@@ -52,23 +50,23 @@ export default function TextForm(props) {
   return (
     <>
     <div className='container' style={{color: props.mode==='dark'?'white':'black'}}>
-        <h1>{props.heading}</h1>
+        <h2 className='mb-3'>{props.heading}</h2>
         <div className="mb-3">
-            <textarea className="form-control" value={Text} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'black'}} onChange={HandleOnChange} id="myBox" rows="8"></textarea>
+            <textarea className="form-control" value={Text} style={{backgroundColor: props.mode==='dark'?'#5e5c5c':'white', color: props.mode==='dark'?'white':'black'}} onChange={HandleOnChange} id="myBox" rows="8"></textarea>
         </div>
-        <button className="btn btn-success mx-1" onClick={handleUpClick}>Convert To Uppercase</button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert To Lowercase</button>
-        <button className="btn btn-danger mx-1" onClick={handleClrClick}>Clear Text</button>
-        <button className="btn btn-success mx-1" onClick={handleCopy}>Copy</button>
-        <button className="btn btn-info mx-1" onClick={handleRemoveExtra}>Remove Extra Space</button>
-        <button type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
+        <button disabled={Text.length===0} className="btn btn-success mx-1 m-1" onClick={handleUpClick}>Convert To Uppercase</button>
+        <button disabled={Text.length===0} className="btn btn-primary mx-1 m-1" onClick={handleLoClick}>Convert To Lowercase</button>
+        <button disabled={Text.length===0} className="btn btn-danger mx-1 m-1" onClick={handleClrClick}>Clear Text</button>
+        <button disabled={Text.length===0} className="btn btn-success mx-1 m-1" onClick={handleCopy}>Copy</button>
+        <button disabled={Text.length===0} className="btn btn-info mx-1 m-1" onClick={handleRemoveExtra}>Remove Extra Space</button>
+        <button disabled={Text.length===0} type="submit" onClick={speak} className="btn btn-warning mx-2 my-2">Speak</button>
     </div>
     <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
         <h2>Your Text Details</h2>
-        <p>{Text.split(" ").length} words and {Text.length} characters</p>
-        <p>{0.008 * Text.split(" ").length} Minutes To Read</p>
+        <p>{Text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {Text.length} characters</p>
+        <p>{0.008 * Text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes To Read</p>
         <h3>Preview</h3>
-        <p>{Text.length>0?Text:"Enter Something In The Textbox Below To Preview It Here."}</p>
+        <p>{Text.length>0?Text:"Nothing to preview!"}</p>
     </div>
     </>
   )
